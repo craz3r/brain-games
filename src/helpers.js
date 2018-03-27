@@ -19,5 +19,3 @@ export const nod = (a, b) => {
   };
   return iter(1, 0);
 };
-
-console.log(nod(-10, 5));
