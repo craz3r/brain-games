@@ -1,4 +1,3 @@
-import readlineSync from 'readline-sync';
 import game from '..';
 import { getRandom, CALC_RULES } from '../helpers';
 
@@ -29,17 +28,13 @@ const calc = () => {
   const b = getRandom(0, 100);
   const s = sign(getRandom(0, 2));
   const question = `${a} ${s} ${b}`;
-  console.log(`Question ${question}`);
-  const userAnswer = readlineSync.question('Your answer: ');
-  if (userAnswer === rightAnswer(s, a, b)) {
-    return 'right';
-  }
-  console.log(`${userAnswer} is wrong answer ;(. Correct answer was ${rightAnswer(s, a, b)}.`);
-  return 'wrong';
+  const answer = rightAnswer(s, a, b);
+
+  return { question, answer };
 };
 
-const run = () => {
-  game(CALC_RULES, calc, 3);
+export const run = () => {
+  game(calc, CALC_RULES);
 };
 
 export default run;

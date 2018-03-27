@@ -1,4 +1,3 @@
-import readlineSync from 'readline-sync';
 import game from '..';
 import { getRandom, EVEN_RULES } from '../helpers';
 
@@ -9,17 +8,12 @@ const rightAnswer = (num) => {
 
 const even = () => {
   const question = getRandom(0, 100);
-  console.log(`Question ${question}`);
-  const userAnswer = readlineSync.question('Your answer: ');
-  if (userAnswer === rightAnswer(question)) {
-    return 'right';
-  }
-  console.log(`${userAnswer} is wrong answer ;(. Correct answer was ${rightAnswer(question)}.`);
-  return 'wrong';
+  const answer = rightAnswer(question);
+  return { question, answer };
 };
 
 const run = () => {
-  game(EVEN_RULES, even, 3);
+  game(even, EVEN_RULES);
 };
 
 export default run;
