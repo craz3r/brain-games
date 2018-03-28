@@ -1,17 +1,21 @@
 import { car, cdr } from 'hexlet-pairs';
 import readlineSync from 'readline-sync';
 
+
 const execGame = (game, rules) => {
   console.log('Welcome to Brain Games!');
   if (rules) console.log(`${rules} \n`);
   const name = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${name}`);
   if (game) {
-    let count = 0;
-    while (count < 3) {
-      const attempt = game();
-      const question = car(attempt);
-      const rightAnswer = cdr(attempt);
+    const gameCicle = (n) => {
+      if (n === 0) {
+        console.log(`Congratulations, ${name}!`);
+        return;
+      }
+      const qa = game();
+      const question = car(qa);
+      const rightAnswer = cdr(qa);
       console.log(`Question ${question}`);
       const userAnswer = readlineSync.question('Your answer: ');
       if (userAnswer !== rightAnswer) {
@@ -20,9 +24,10 @@ const execGame = (game, rules) => {
         return;
       }
       console.log('Correct');
-      count += 1;
-    }
-    console.log(`Congratulations, ${name}!`);
+
+      gameCicle(n - 1);
+    };
+    gameCicle(3);
   }
 };
 
