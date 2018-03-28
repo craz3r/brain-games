@@ -1,19 +1,22 @@
+import { cons } from 'hexlet-pairs';
 import game from '..';
-import { getRandom, EVEN_RULES } from '../helpers';
+import { getRandom } from '../helpers';
+
+const rules = 'Answer "yes" if number is even otherwise answer "no".';
 
 const rightAnswer = (num) => {
   if (num % 2 === 0) return 'yes';
   return 'no';
 };
 
-const even = () => {
+const generate = () => {
   const question = getRandom(0, 100);
   const answer = rightAnswer(question);
-  return { question, answer };
+  return cons(question, answer);
 };
 
 const run = () => {
-  game(even, EVEN_RULES);
+  game(generate, rules);
 };
 
 export default run;

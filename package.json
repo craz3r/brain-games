@@ -1,6 +1,6 @@
 {
   "name": "nikita-sigow-brain-games",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "",
   "bin": {
     "brain-games": "dist/bin/brain-games.js",
@@ -40,6 +40,7 @@
     "eslint-plugin-import": "^2.9.0"
   },
   "dependencies": {
+    "hexlet-pairs": "^1.0.5",
     "readline-sync": "^1.4.9"
   }
 }
