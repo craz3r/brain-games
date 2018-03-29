@@ -1,12 +1,13 @@
 {
   "name": "nikita-sigow-brain-games",
-  "version": "2.0.2",
+  "version": "2.1.2",
   "description": "",
   "bin": {
     "brain-games": "dist/bin/brain-games.js",
     "brain-even": "dist/bin/brain-even.js",
     "brain-calc": "dist/bin/brain-calc.js",
-    "brain-gcd": "dist/bin/brain-gcd.js"
+    "brain-gcd": "dist/bin/brain-gcd.js",
+    "brain-balance": "dist/binbrain-balance.js"
   },
   "files": [
     "dist"

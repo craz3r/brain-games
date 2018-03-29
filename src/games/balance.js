@@ -1,58 +1,61 @@
 import { cons } from 'hexlet-pairs';
 import game from '..';
 import { getRandom } from '../helpers';
-import readlineSync from 'readline-sync';
 
 const rules = 'Balance the given number.';
 
 const checkBalance = (unbalance) => {
-  const first = unbalance[0];
-  const last = unbalance[unbalance.length - 1];
-  return last - first === 1;
+  let changeDif = 0;
+  const iter = (acc) => {
+    if (changeDif > 1) return false;
+    if (acc.length === 1) return true;
+    if (acc[1] - acc[0] > 1 || acc[1] - acc[0] < 0) return false;
+    if (acc[1] - acc[0] === 1) changeDif += 1;
+    return iter(acc.substr(1));
+  };
+  return iter(unbalance);
 };
 
 const getBalance = (unbalance) => {
-  const iter = (cur, acc) => {
-    console.log(cur, acc);
-    let current = +acc[cur];
-    let next = +acc[cur + 1];
-    if (cur === unbalance.length - 1) {
-      console.log('дошли до конца');
-      if (checkBalance(acc.join(''))) {
-        console.log('итог');
-        return acc;
-      }
-      iter(0, acc);
+  const iter = (n, acc, k) => {
+    if (checkBalance(acc.join(''))) return acc.join('');
+
+    const cur = +acc[n];
+    const next = +acc[k];
+
+    if (next - cur > 1) {
+      acc[n] = +acc[n] + 1;
+      acc[k] = +acc[k] - 1;
+      return iter(n, acc, k);
     }
-    if (current - next > 0) {
-      current -= 1;
-      acc[cur] = current;
-      next += 1;
-      acc[cur + 1] = next;
-      return iter(cur, acc);
-    } else if (current - next < -1) {
-      current += 1;
-      acc[cur] = current;
-      next -= 1;
-      acc[cur + 1] = next;
-      return iter(cur, acc);
+
+    if (next - cur < 0) {
+      acc[n] = +acc[n] - 1;
+      acc[k] = +acc[k] + 1;
+      return iter(n, acc, k);
     }
-    const a = readlineSync.question("Ff");
-    return iter(cur + 1, acc);
+
+    if (n === acc.length - 2) {
+      return iter(0, acc, 1);
+    }
+
+
+    if (k === acc.length - 1) return iter(n + 1, acc, n + 2);
+
+    return iter(n, acc, k + 1);
   };
 
-  return iter(0, unbalance.split(''));
+  return iter(0, unbalance.split(''), 1);
 };
-
-console.log(getBalance('215'));
 
 const generate = () => {
   const getUnbalance = (num) => {
-    if (!checkBalance(num)) return String(num);
-    return getUnbalance((getRandom(11, 9999)));
+    if (!checkBalance(String(num))) return String(num);
+    return getUnbalance((getRandom(10, 1000)));
   };
-  const unbalanceNumber = getUnbalance(getRandom(11, 9999));
-  return cons(unbalanceNumber, getBalance(unbalanceNumber));
+  const unbalanceNumber = getUnbalance(getRandom(10, 1000));
+  const balanceNumber = getBalance(unbalanceNumber);
+  return cons(unbalanceNumber, balanceNumber);
 };
 
 const run = () => {
