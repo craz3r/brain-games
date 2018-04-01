@@ -1,5 +1,5 @@
 import { cons } from 'hexlet-pairs';
-import game from '../';
+import executeGame from '../';
 import { getRandom, getGCD } from '../helpers';
 
 const rightAnswer = (a, b) => String(getGCD(a, b));
@@ -16,7 +16,7 @@ const generate = () => {
 };
 
 const run = () => {
-  game(generate, rules);
+  executeGame(generate, rules);
 };
 
 export default run;

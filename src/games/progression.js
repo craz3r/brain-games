@@ -1,5 +1,5 @@
 import { cons } from 'hexlet-pairs';
-import game from '..';
+import executeGame from '..';
 import { getRandom } from '../helpers';
 
 const rules = 'What number is missing in this progression?';
@@ -31,7 +31,7 @@ const generate = () => {
 console.log(generate());
 
 const run = () => {
-  game(generate, rules);
+  executeGame(generate, rules);
 };
 
 export default run;

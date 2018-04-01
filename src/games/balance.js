@@ -1,10 +1,10 @@
 import { cons } from 'hexlet-pairs';
-import game from '..';
+import executeGame from '..';
 import { getRandom } from '../helpers';
 
 const rules = 'Balance the given number.';
 
-const checkBalance = (unbalance) => {
+const isBalance = (unbalance) => {
   let changeDif = 0;
   const iter = (acc) => {
     if (changeDif > 1) return false;
@@ -18,7 +18,7 @@ const checkBalance = (unbalance) => {
 
 const getBalance = (unbalance) => {
   const iter = (n, acc, k) => {
-    if (checkBalance(acc.join(''))) return acc.join('');
+    if (isBalance(acc.join(''))) return acc.join('');
 
     const cur = +acc[n];
     const next = +acc[k];
@@ -50,7 +50,7 @@ const getBalance = (unbalance) => {
 
 const generate = () => {
   const getUnbalance = (num) => {
-    if (!checkBalance(String(num))) return String(num);
+    if (!isBalance(String(num))) return String(num);
     return getUnbalance((getRandom(10, 1000)));
   };
   const unbalanceNumber = getUnbalance(getRandom(10, 1000));
@@ -59,7 +59,7 @@ const generate = () => {
 };
 
 const run = () => {
-  game(generate, rules);
+  executeGame(generate, rules);
 };
 
 export default run;

@@ -8,7 +8,7 @@ const execGame = (game, rules) => {
   const name = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${name}`);
   if (game) {
-    const gameCicle = (n) => {
+    const gameCycle = (n) => {
       if (n === 0) {
         console.log(`Congratulations, ${name}!`);
         return;
@@ -25,9 +25,9 @@ const execGame = (game, rules) => {
       }
       console.log('Correct');
 
-      gameCicle(n - 1);
+      gameCycle(n - 1);
     };
-    gameCicle(3);
+    gameCycle(3);
   }
 };
 

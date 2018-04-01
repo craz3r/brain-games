@@ -1,10 +1,10 @@
 import { cons } from 'hexlet-pairs';
-import game from '..';
+import executeGame from '..';
 import { getRandom } from '../helpers';
 
 const rules = 'Is this number prime?';
 
-const checkPrime = (number) => {
+const isPrime = (number) => {
   const iter = (n) => {
     if (n === Math.ceil(Math.sqrt(number))) return true;
     if (number % 2 === 0) return false;
@@ -16,8 +16,8 @@ const checkPrime = (number) => {
 
 const generate = () => {
   const getAnswer = (question) => {
-    const isPrime = checkPrime(question);
-    return isPrime ? 'yes' : 'no';
+    const primeFlag = isPrime(question);
+    return primeFlag ? 'yes' : 'no';
   };
 
   const question = getRandom(2, 99);
@@ -27,7 +27,7 @@ const generate = () => {
 };
 
 const run = () => {
-  game(generate, rules);
+  executeGame(generate, rules);
 };
 
 export default run;

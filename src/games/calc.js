@@ -1,5 +1,5 @@
 import { cons } from 'hexlet-pairs';
-import game from '..';
+import executeGame from '..';
 import { getRandom } from '../helpers';
 
 const rightAnswer = (sign, a, b) => {
@@ -37,7 +37,7 @@ const generate = () => {
 };
 
 export const run = () => {
-  game(generate, rules);
+  executeGame(generate, rules);
 };
 
 export default run;
