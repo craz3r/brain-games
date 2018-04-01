@@ -2,18 +2,18 @@ import { car, cdr } from 'hexlet-pairs';
 import readlineSync from 'readline-sync';
 
 
-const execGame = (game, rules) => {
+const execGame = (getQA, rules) => {
   console.log('Welcome to Brain Games!');
   if (rules) console.log(`${rules} \n`);
   const name = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${name}`);
-  if (game) {
+  if (getQA) {
     const gameCycle = (n) => {
       if (n === 0) {
         console.log(`Congratulations, ${name}!`);
         return;
       }
-      const qa = game();
+      const qa = getQA();
       const question = car(qa);
       const rightAnswer = cdr(qa);
       console.log(`Question ${question}`);

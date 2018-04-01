@@ -1,6 +1,6 @@
 {
   "name": "nikita-sigow-brain-games",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "description": "",
   "bin": {
     "brain-games": "dist/bin/brain-games.js",
